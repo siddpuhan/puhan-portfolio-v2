@@ -38,14 +38,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 
   if (!post) {
-    notFound();
+    return { title: "Post Not Found" };
   }
+
+  const authorTwitter = post.author?.twitterUrl?.split("twitter.com/")[1] || "";
 
   return {
     title: `${post.title}`,
     metadataBase: new URL(`https://victoreke.com/blog/${post.slug}`),
     description: post.description,
-    publisher: post.author.name,
+    publisher: post.author?.name || "",
     keywords: post.tags,
     alternates: {
       canonical:
@@ -60,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       siteName: "victoreke.com",
-      authors: post.author.name,
+      authors: post.author?.name || "",
       tags: post.tags,
       publishedTime: post._createdAt,
       modifiedTime: post._updatedAt || "",
@@ -71,8 +73,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images:
         urlFor(post.coverImage?.image).width(680).height(340).url() ||
         fallbackImage,
-      creator: `@${post.author.twitterUrl.split("twitter.com/")[1]}`,
-      site: `@${post.author.twitterUrl.split("twitter.com/")[1]}`,
+      creator: `@${authorTwitter}`,
+      site: `@${authorTwitter}`,
       card: "summary_large_image",
     },
   };
@@ -86,11 +88,11 @@ export default async function Post({ params }: Props) {
     qParams: { slug },
   });
 
-  const words = toPlainText(post.body);
-
   if (!post) {
     notFound();
   }
+
+  const words = toPlainText(post.body);
 
   return (
     <main className="max-w-7xl mx-auto md:px-16 px-6">

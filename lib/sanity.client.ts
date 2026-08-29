@@ -12,7 +12,8 @@ const config: ClientConfig = {
   perspective: "published",
 };
 
-const client = createClient(config);
+// Only create the client when Sanity is properly configured
+const client = projectId ? createClient(config) : null;
 
 export async function sanityFetch<QueryResponse>({
   query,
@@ -23,8 +24,22 @@ export async function sanityFetch<QueryResponse>({
   qParams?: QueryParams;
   tags: string[];
 }): Promise<QueryResponse> {
-  return client.fetch<QueryResponse>(query, qParams, {
-    cache: mode === "development" ? "no-store" : "force-cache",
-    next: { tags },
-  });
+  // When Sanity is not configured, return empty data so the UI still renders.
+  // All components already handle empty arrays / null profiles gracefully.
+  if (!projectId || !dataset) {
+    // Heuristic: GROQ queries that end with [0] fetch a single item
+    const isSingleItem = query.includes("[0]");
+    return (isSingleItem ? null : []) as QueryResponse;
+  }
+
+  try {
+    return client!.fetch<QueryResponse>(query, qParams, {
+      cache: mode === "development" ? "no-store" : "force-cache",
+      next: { tags },
+    });
+  } catch (error) {
+    console.error("[Sanity] Fetch failed, returning empty data:", error);
+    const isSingleItem = query.includes("[0]");
+    return (isSingleItem ? null : []) as QueryResponse;
+  }
 }

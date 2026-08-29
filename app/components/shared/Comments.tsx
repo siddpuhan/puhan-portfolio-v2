@@ -13,6 +13,14 @@ export default function Comments() {
       ? "transparent_dark"
       : "dark";
 
+  if (!giscusRepoId || !giscusCategoryId) {
+    return (
+      <p className="text-sm text-zinc-500">
+        Comments are not configured. Add Giscus environment variables to enable them.
+      </p>
+    );
+  }
+
   return (
     <Giscus
       id="comments"

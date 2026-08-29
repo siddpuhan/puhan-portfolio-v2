@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     qParams: { slug },
   });
 
+  if (!project) {
+    return { title: "Project Not Found" };
+  }
+
   return {
     title: `${project.name} | Project`,
     metadataBase: new URL(`https://victoreke.com/projects/${project.slug}`),
