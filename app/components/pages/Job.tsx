@@ -8,11 +8,26 @@ import RefLink from "../shared/RefLink";
 import EmptyState from "../shared/EmptyState";
 import { RiBriefcase3Fill } from "react-icons/ri";
 
+const fallbackJobs: JobType[] = [
+  {
+    _id: "fallback-1",
+    name: "Amity Coding Club",
+    jobTitle: "Technical Coordinator",
+    logo: "/logo.png",
+    url: "",
+    description:
+      "Lead technical initiatives and set direction for the Amity Coding Club, managing a ~20-member team. Mentor junior developers and organize technical events for the student community.",
+    startDate: "",
+    endDate: "",
+  },
+];
+
 export default async function Job() {
-  const jobs: JobType[] = await sanityFetch({
+  const sanityJobs: JobType[] = await sanityFetch({
     query: jobQuery,
     tags: ["job"],
   });
+  const jobs: JobType[] = sanityJobs.length > 0 ? sanityJobs : fallbackJobs;
 
   return (
     <section className="mt-32">
@@ -48,9 +63,17 @@ export default async function Job() {
                   <h3 className="text-xl font-semibold">{job.name}</h3>
                   <p>{job.jobTitle}</p>
                   <time className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                    {formatDate(job.startDate)} -{" "}
-                    {job.endDate ? (
-                      formatDate(job.endDate)
+                    {job.startDate ? (
+                      <>
+                        {formatDate(job.startDate)} -{" "}
+                        {job.endDate ? (
+                          formatDate(job.endDate)
+                        ) : (
+                          <span className="dark:text-primary-color text-tertiary-color">
+                            Present
+                          </span>
+                        )}
+                      </>
                     ) : (
                       <span className="dark:text-primary-color text-tertiary-color">
                         Present
