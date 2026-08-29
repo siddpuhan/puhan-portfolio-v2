@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 type faviconType = {
   domain: string;
@@ -6,6 +9,8 @@ type faviconType = {
 };
 
 export default function Favicon({ domain }: faviconType) {
+  const [hasError, setHasError] = useState(false);
+
   function extractDomain(url: string) {
     const match = url.match(
       /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/.\n]+\.[a-z]{2,})(?:\/|$)/i
@@ -19,13 +24,18 @@ export default function Favicon({ domain }: faviconType) {
     }
   }
 
+  if (hasError) {
+    return null;
+  }
+
   return (
     <Image
       className="mr-2"
-      src={`http://www.google.com/s2/favicons?domain=${domain}`}
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=17`}
       width={17}
       height={17}
       alt={extractDomain(domain) || ""}
+      onError={() => setHasError(true)}
     />
   );
 }
