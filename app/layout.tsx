@@ -1,11 +1,9 @@
 import "@/app/styles/globals.css";
-import Script from "next/script";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { incognito } from "./assets/font/font";
 import { gitlabmono } from "./assets/font/font";
 import Navbar from "./components/global/Navbar";
-import Footer from "./components/global/Footer";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -19,7 +17,6 @@ const options = {
   description:
     "Siddharth Puhan is a developer passionate about building projects and contributing to open source communities",
   url: "https://siddpuhan.vercel.app",
-  // TODO: Replace with Siddharth's own OG image path (e.g. /images/og.png) during the Assets phase.
   ogImage:
     "https://res.cloudinary.com/victoreke/image/upload/v1692635746/victoreke/og.png",
 };
@@ -58,7 +55,6 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
-          <Footer />
         </Providers>
       </body>
     </html>

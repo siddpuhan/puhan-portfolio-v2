@@ -1,64 +1,20 @@
-"use client";
-
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import vercellogo from "@/public/vercel.svg";
-import nextjslogo from "@/public/nextjs.svg";
-
 export default function Footer() {
-  const pathname = usePathname();
-
-  // If on /contact, hide global footer (contact route uses dedicated ContactFooter)
-  if (pathname === "/contact") {
-    return null;
-  }
-
   return (
-    <footer className="border-t dark:border-zinc-800 border-zinc-100 mt-44 lg:min-h-[250px] min-h-full relative">
-      <div className="max-w-7xl mx-auto flex lg:flex-row flex-col items-center lg:justify-between justify-center gap-y-4 md:px-16 px-6 py-16">
-        <div className="flex md:flex-row flex-col items-center gap-x-2">
-          <h3 className="font-inter">Built with:</h3>
-          <ul className="flex items-center gap-x-2 text-sm dark:text-zinc-600 text-zinc-400 md:mt-0 mt-3">
-            <li>
-              <a
-                href="https://nextjs.org"
-                rel="noreferrer noopener"
-                target="_blank"
-                className="flex items-center gap-x-2 dark:text-white text-zinc-600 hover:underline"
-              >
-                <Image
-                  src={nextjslogo}
-                  width={20}
-                  height={20}
-                  alt="nextjs logo"
-                />{" "}
-                Next.js
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://vercel.com"
-                rel="noreferrer noopener"
-                target="_blank"
-                className="flex items-center gap-x-2 dark:text-white text-zinc-600 hover:underline"
-              >
-                <Image
-                  src={vercellogo}
-                  width={20}
-                  height={20}
-                  alt="vercel logo"
-                />{" "}
-                Vercel
-              </a>
-            </li>
-          </ul>
+    <footer className="w-full mt-32 overflow-hidden relative select-none border-none dark:bg-zinc-900 bg-white">
+      {/* Background/Overlay Wordmark Container */}
+      <div className="w-full relative px-2 sm:px-6 pt-2 pb-0 overflow-hidden flex flex-col justify-end min-h-[160px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[340px] max-h-[360px]">
+        {/* Top Accent: Small Copyright Notice at top right */}
+        <div className="absolute top-4 right-6 sm:right-10 z-10 flex items-center gap-x-2">
+          <span className="font-mono text-xs sm:text-sm text-zinc-500 font-medium">
+            &copy; {new Date().getFullYear()} Siddharth Puhan
+          </span>
         </div>
 
-        <div className="flex flex-col lg:items-end items-center lg:text-start text-center">
-          <small className="text-zinc-500">
-            Copyright &copy; Siddharth Puhan {new Date().getFullYear()} All rights
-            Reserved
-          </small>
+        {/* Massive Edge-to-Edge "Puhan" Wordmark */}
+        <div className="w-full flex items-baseline justify-start whitespace-nowrap overflow-hidden -mb-4 sm:-mb-8 md:-mb-12">
+          <h1 className="font-incognito font-black tracking-tighter text-[23vw] sm:text-[22vw] md:text-[21vw] lg:text-[20vw] leading-[0.75] dark:text-white text-zinc-900 w-full block text-left">
+            Puhan
+          </h1>
         </div>
       </div>
     </footer>
