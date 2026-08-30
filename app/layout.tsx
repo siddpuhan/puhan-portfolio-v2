@@ -19,6 +19,7 @@ const options = {
   description:
     "Siddharth Puhan is a developer passionate about building projects and contributing to open source communities",
   url: "https://siddpuhan.vercel.app",
+  // TODO: Replace with Siddharth's own OG image path (e.g. /images/og.png) during the Assets phase.
   ogImage:
     "https://res.cloudinary.com/victoreke/image/upload/v1692635746/victoreke/og.png",
 };
@@ -60,11 +61,6 @@ export default function RootLayout({
           <Footer />
         </Providers>
       </body>
-      <Script
-        defer
-        src="https://cloud.umami.is/script.js"
-        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-      />
     </html>
   );
 }

@@ -317,7 +317,7 @@ export default function Usage() {
             href="https://gitforwindows.org/"
             className="font-medium inline-flex items-center justify-start gap-x-1 dark:text-blue-400 text-blue-500 underline"
           >
-            <Favicon domain="https://gitforwindows.org/" alt="Git Bash" />
+            <Favicon domain="https://git-scm.com/" alt="Git Bash" />
             Git Bash - Git Terminal
           </RefLink>
         </li>

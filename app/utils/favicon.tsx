@@ -28,10 +28,17 @@ export default function Favicon({ domain }: faviconType) {
     return null;
   }
 
+  let hostname = "";
+  try {
+    hostname = new URL(domain).hostname;
+  } catch (error) {
+    hostname = domain;
+  }
+
   return (
     <Image
       className="mr-2"
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=17`}
+      src={`https://www.google.com/s2/favicons?domain=${hostname}&sz=17`}
       width={17}
       height={17}
       alt={extractDomain(domain) || ""}

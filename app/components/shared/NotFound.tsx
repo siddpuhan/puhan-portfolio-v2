@@ -1,6 +1,5 @@
 import Image from "next/image";
 import duckImage from "@/public/searching-duck.gif";
-import FeaturedPosts from "../pages/FeaturedPosts";
 
 type props = {
   title: string;
@@ -24,10 +23,6 @@ export default function NotFoundComponent({ title, description }: props) {
           {description}
         </p>
       </header>
-
-      <div className="max-w-4xl grid lg:grid-cols-2 grid-cols-1 gap-4 mt-12">
-        <FeaturedPosts />
-      </div>
     </main>
   );
 }

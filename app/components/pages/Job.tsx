@@ -1,33 +1,13 @@
 import Image from "next/image";
-import { jobQuery } from "@/lib/sanity.query";
 import type { JobType } from "@/types";
 import { formatDate } from "../../utils/date";
 import { Slide } from "../../animation/Slide";
-import { sanityFetch } from "@/lib/sanity.client";
 import RefLink from "../shared/RefLink";
 import EmptyState from "../shared/EmptyState";
 import { RiBriefcase3Fill } from "react-icons/ri";
-
-const fallbackJobs: JobType[] = [
-  {
-    _id: "fallback-1",
-    name: "Amity Coding Club",
-    jobTitle: "Technical Coordinator",
-    logo: "/logo.png",
-    url: "",
-    description:
-      "Lead technical initiatives and set direction for the Amity Coding Club, managing a ~20-member team. Mentor junior developers and organize technical events for the student community.",
-    startDate: "",
-    endDate: "",
-  },
-];
+import { jobs } from "@/app/data/jobs";
 
 export default async function Job() {
-  const sanityJobs: JobType[] = await sanityFetch({
-    query: jobQuery,
-    tags: ["job"],
-  });
-  const jobs: JobType[] = sanityJobs.length > 0 ? sanityJobs : fallbackJobs;
 
   return (
     <section className="mt-32">

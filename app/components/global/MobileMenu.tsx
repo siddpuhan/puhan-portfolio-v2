@@ -5,10 +5,9 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import {
   HiBeaker,
-  HiBookmarkAlt,
-  HiCamera,
   HiOutlineX,
   HiUser,
+  HiMail,
 } from "react-icons/hi";
 import Logo from "../../../public/logo.png";
 
@@ -26,14 +25,9 @@ export default function MobileMenu() {
       icon: HiBeaker,
     },
     {
-      title: "Blog",
-      href: "/blog",
-      icon: HiBookmarkAlt,
-    },
-    {
-      title: "Photos",
-      href: "/photos",
-      icon: HiCamera,
+      title: "Contact",
+      href: "/contact",
+      icon: HiMail,
     },
   ];
 
