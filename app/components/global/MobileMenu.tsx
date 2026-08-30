@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import HouseIcon from "@/app/assets/icons/HouseIcon";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import {
@@ -9,7 +9,6 @@ import {
   HiUser,
   HiMail,
 } from "react-icons/hi";
-import Logo from "../../../public/logo.png";
 
 export default function MobileMenu() {
   const [navShow, setNavShow] = useState(false);
@@ -57,8 +56,8 @@ export default function MobileMenu() {
         }`}
       >
         <div className="flex items-center justify-between mt-6 px-8">
-          <Link href="/" onClick={onToggleNav}>
-            <Image src={Logo} width={35} height={35} alt="logo" />
+          <Link href="/" onClick={onToggleNav} aria-label="Home" className="flex items-center">
+            <HouseIcon className="w-[26px] h-[26px]" />
           </Link>
 
           <button
